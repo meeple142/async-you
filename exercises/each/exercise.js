@@ -14,6 +14,14 @@ exercise = execute(exercise)
 // compare stdout of solution and submission
 exercise = comparestdout(exercise)
 
+// set up the firstserver
+exercise.addSetup(function (mode, callback) {
+  this.server = http.createServer(function (req, res) {
+    res.end('meerkat');
+  })
+
+  this.server.listen(4242, callback)
+})
 
 // set up the data file to be passed to the submission
 exercise.addSetup(function (mode, callback) {
